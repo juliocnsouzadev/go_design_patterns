@@ -3,21 +3,21 @@ package main
 import (
 	"fmt"
 	"go_design_patterns/coffee"
+	"go_design_patterns/meal"
 	"go_design_patterns/transactions"
 )
 
 func main() {
-	fmt.Println("** Design Patterns in Go **\n")
+	fmt.Println("** Design Patterns in Go **")
 
-	fmt.Println(">= Decorator Pattern <=\n************************")
+	fmt.Println("\n========> Decorator Pattern <========")
 	transaction := transactions.BankTransction
 	transaction = transactions.SmsDecorator(transaction)
 	transaction = transactions.EmailDecorator(transaction)
 	transaction("salary", 1000, true)
 	transaction("rent", 500, false)
-	fmt.Println("************************\n")
 
-	fmt.Println(">= Specification Pattern (Open and Closed Principle) <=\n************************")
+	fmt.Println("\n========> Specification Pattern (Open and Closed Principle) <========")
 	cappuccinoSm := coffee.NewCoffee("Cappuccino Small", coffee.Sweet, coffee.Small)
 	cappuccinoMed := coffee.NewCoffee("Cappuccino Medium", coffee.Sweet, coffee.Medium)
 	cappuccinoLar := coffee.NewCoffee("Cappuccino Large", coffee.Sweet, coffee.Large)
@@ -51,4 +51,19 @@ func main() {
 	for _, coffee := range sweetAndSmallCoffees {
 		fmt.Println(coffee.Name)
 	}
+
+	fmt.Println("\n========> Builder Pattern <========")
+	meal := meal.NewMealBuilder().
+		Named("Super Mega Blaster Combo").
+		WithMainDish().
+		Named("Special Steak BBQ").
+		WithDescription("Extra Large Juice Steak covered in BBQ sauce").
+		WithSide().
+		Named("Garlic Bread").
+		WithDescription("4 delicious slices of garlic bread covered in cheese").
+		WithDrink().
+		Named("Premium Weiss Beer").
+		WithSize(meal.Large).
+		Build()
+	fmt.Println("Built Meal:\n", meal.String())
 }
