@@ -1,4 +1,4 @@
-package coffee
+package coffees
 
 type TypeSpecification struct {
 	Type Type

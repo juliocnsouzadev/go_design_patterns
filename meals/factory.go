@@ -1,4 +1,4 @@
-package meal
+package meals
 
 import "fmt"
 

@@ -1,4 +1,4 @@
-package coffee
+package coffees
 
 type SizeSpecification struct {
 	Size Size

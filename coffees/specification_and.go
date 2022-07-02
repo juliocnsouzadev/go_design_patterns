@@ -1,4 +1,4 @@
-package coffee
+package coffees
 
 type AndSpecification struct {
 	Specifications []Specification
