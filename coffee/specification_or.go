@@ -4,7 +4,7 @@ type OrSpecification struct {
 	Specifications []Specification
 }
 
-func (orSpecification OrSpecification) IsSatisfied(coffee *Coffee) bool {
+func (orSpecification OrSpecification) IsSatisfied(coffee *coffee) bool {
 	for _, specification := range orSpecification.Specifications {
 		if specification.IsSatisfied(coffee) {
 			return true

@@ -1,5 +1,5 @@
 package coffee
 
 type Specification interface {
-	IsSatisfied(coffee *Coffee) bool
+	IsSatisfied(coffee *coffee) bool
 }

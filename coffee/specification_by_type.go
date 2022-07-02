@@ -4,7 +4,7 @@ type TypeSpecification struct {
 	Type Type
 }
 
-func (typeSpecification TypeSpecification) IsSatisfied(coffee *Coffee) bool {
+func (typeSpecification TypeSpecification) IsSatisfied(coffee *coffee) bool {
 	return coffee.Type == typeSpecification.Type
 }
 

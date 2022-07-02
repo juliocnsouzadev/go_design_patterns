@@ -18,19 +18,29 @@ func main() {
 	transaction("rent", 500, false)
 
 	fmt.Println("\n========> Specification Pattern (Open and Closed Principle) <========")
-	cappuccinoSm := coffee.NewCoffee("Cappuccino Small", coffee.Sweet, coffee.Small)
-	cappuccinoMed := coffee.NewCoffee("Cappuccino Medium", coffee.Sweet, coffee.Medium)
-	cappuccinoLar := coffee.NewCoffee("Cappuccino Large", coffee.Sweet, coffee.Large)
+	cappuccinoSm := coffee.NewCoffee(coffee.Cappuccino, coffee.Small)
+	cappuccinoMed := coffee.NewCoffee(coffee.Cappuccino, coffee.Medium)
+	cappuccinoLar := coffee.NewCoffee(coffee.Cappuccino, coffee.Large)
 
-	frenchPressSm := coffee.NewCoffee("French Press Small", coffee.Light, coffee.Small)
-	frenchPressMed := coffee.NewCoffee("French Press Medium", coffee.Light, coffee.Medium)
-	frenchPressLar := coffee.NewCoffee("French Press Large", coffee.Light, coffee.Large)
+	frenchPressSm := coffee.NewCoffee(coffee.FrenchPress, coffee.Small)
+	frenchPressMed := coffee.NewCoffee(coffee.FrenchPress, coffee.Medium)
+	frenchPressLar := coffee.NewCoffee(coffee.FrenchPress, coffee.Large)
 
-	blackSm := coffee.NewCoffee("Black Small", coffee.Bitter, coffee.Small)
-	blackMed := coffee.NewCoffee("Black Press Medium", coffee.Bitter, coffee.Medium)
-	blackLar := coffee.NewCoffee("Black Press Large", coffee.Bitter, coffee.Large)
+	blackSm := coffee.NewCoffee(coffee.Black, coffee.Small)
+	blackMed := coffee.NewCoffee(coffee.Black, coffee.Medium)
+	blackLar := coffee.NewCoffee(coffee.Black, coffee.Large)
 
-	coffees := []*coffee.Coffee{cappuccinoSm, cappuccinoMed, cappuccinoLar, frenchPressSm, frenchPressMed, frenchPressLar, blackSm, blackMed, blackLar}
+	coffees := coffee.AsList(
+		cappuccinoSm,
+		cappuccinoMed,
+		cappuccinoLar,
+		frenchPressSm,
+		frenchPressMed,
+		frenchPressLar,
+		blackSm,
+		blackMed,
+		blackLar,
+	)
 
 	coffeeFilter := coffee.CoffeeFilter{}
 
@@ -53,7 +63,7 @@ func main() {
 	}
 
 	fmt.Println("\n========> Builder Pattern <========")
-	meal := meal.NewMealBuilder().
+	someMeal := meal.NewMealBuilder().
 		Named("Super Mega Blaster Combo").
 		WithMainDish().
 		Named("Special Steak BBQ").
@@ -65,5 +75,14 @@ func main() {
 		Named("Premium Weiss Beer").
 		WithSize(meal.Large).
 		Build()
-	fmt.Println("Built Meal:\n", meal.String())
+	fmt.Println("Built Meal:\n", someMeal.String())
+
+	fmt.Println("\n========> Factory Pattern <========")
+	breakfast := meal.NewMealHouseSpecial(meal.Breakfast)
+	lunch := meal.NewMealHouseSpecial(meal.Lunch)
+	dinner := meal.NewMealHouseSpecial(meal.Dinner)
+
+	for _, houseSpecial := range []*meal.Meal{breakfast, lunch, dinner} {
+		fmt.Println("Default Meal:\n", houseSpecial.String())
+	}
 }

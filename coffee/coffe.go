@@ -13,14 +13,14 @@ const (
 	Large  Size = "large"
 )
 
-type Coffee struct {
+type coffee struct {
 	Name string
 	Type Type
 	Size Size
 }
 
-func NewCoffee(name string, coffeeType Type, size Size) *Coffee {
-	return &Coffee{
+func newCoffee(name string, coffeeType Type, size Size) *coffee {
+	return &coffee{
 		Name: name,
 		Type: coffeeType,
 		Size: size,
