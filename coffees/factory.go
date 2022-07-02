@@ -1,4 +1,4 @@
-package coffee
+package coffees
 
 import "fmt"
 
@@ -20,7 +20,7 @@ func NewCoffee(houseType HouseCoffee, size Size) *coffee {
 	case Black:
 		return newCoffee(name, Bitter, size)
 	default:
-		panic("Unknown House coffee")
+		panic("Unknown House coffees")
 	}
 }
 

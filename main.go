@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	"go_design_patterns/coffee"
-	"go_design_patterns/meal"
+	"go_design_patterns/coffees"
+	"go_design_patterns/meals"
 	"go_design_patterns/transactions"
 )
 
@@ -18,19 +18,19 @@ func main() {
 	transaction("rent", 500, false)
 
 	fmt.Println("\n========> Specification Pattern (Open and Closed Principle) <========")
-	cappuccinoSm := coffee.NewCoffee(coffee.Cappuccino, coffee.Small)
-	cappuccinoMed := coffee.NewCoffee(coffee.Cappuccino, coffee.Medium)
-	cappuccinoLar := coffee.NewCoffee(coffee.Cappuccino, coffee.Large)
+	cappuccinoSm := coffees.NewCoffee(coffees.Cappuccino, coffees.Small)
+	cappuccinoMed := coffees.NewCoffee(coffees.Cappuccino, coffees.Medium)
+	cappuccinoLar := coffees.NewCoffee(coffees.Cappuccino, coffees.Large)
 
-	frenchPressSm := coffee.NewCoffee(coffee.FrenchPress, coffee.Small)
-	frenchPressMed := coffee.NewCoffee(coffee.FrenchPress, coffee.Medium)
-	frenchPressLar := coffee.NewCoffee(coffee.FrenchPress, coffee.Large)
+	frenchPressSm := coffees.NewCoffee(coffees.FrenchPress, coffees.Small)
+	frenchPressMed := coffees.NewCoffee(coffees.FrenchPress, coffees.Medium)
+	frenchPressLar := coffees.NewCoffee(coffees.FrenchPress, coffees.Large)
 
-	blackSm := coffee.NewCoffee(coffee.Black, coffee.Small)
-	blackMed := coffee.NewCoffee(coffee.Black, coffee.Medium)
-	blackLar := coffee.NewCoffee(coffee.Black, coffee.Large)
+	blackSm := coffees.NewCoffee(coffees.Black, coffees.Small)
+	blackMed := coffees.NewCoffee(coffees.Black, coffees.Medium)
+	blackLar := coffees.NewCoffee(coffees.Black, coffees.Large)
 
-	coffees := coffee.AsList(
+	coffeeList := coffees.AsList(
 		cappuccinoSm,
 		cappuccinoMed,
 		cappuccinoLar,
@@ -42,9 +42,9 @@ func main() {
 		blackLar,
 	)
 
-	coffeeFilter := coffee.CoffeeFilter{}
+	coffeeFilter := coffees.CoffeeFilter{}
 
-	bitterCoffees := coffeeFilter.Filter(coffees, coffee.NewTypeSpecification(coffee.Bitter))
+	bitterCoffees := coffeeFilter.Filter(coffeeList, coffees.NewTypeSpecification(coffees.Bitter))
 
 	fmt.Println("\nBitter Coffees:")
 	for _, coffee := range bitterCoffees {
@@ -52,9 +52,9 @@ func main() {
 	}
 
 	sweetAndSmallCoffees := coffeeFilter.Filter(
-		coffees,
-		coffee.NewAndSpecification(
-			coffee.NewTypeSpecification(coffee.Sweet), coffee.NewSizeSpecification(coffee.Small),
+		coffeeList,
+		coffees.NewAndSpecification(
+			coffees.NewTypeSpecification(coffees.Sweet), coffees.NewSizeSpecification(coffees.Small),
 		),
 	)
 	fmt.Println("\nSweet and Small Coffees:")
@@ -63,7 +63,7 @@ func main() {
 	}
 
 	fmt.Println("\n========> Builder Pattern <========")
-	someMeal := meal.NewMealBuilder().
+	someMeal := meals.NewMealBuilder().
 		Named("Super Mega Blaster Combo").
 		WithMainDish().
 		Named("Special Steak BBQ").
@@ -73,16 +73,16 @@ func main() {
 		WithDescription("4 delicious slices of garlic bread covered in cheese").
 		WithDrink().
 		Named("Premium Weiss Beer").
-		WithSize(meal.Large).
+		WithSize(meals.Large).
 		Build()
 	fmt.Println("Built Meal:\n", someMeal.String())
 
 	fmt.Println("\n========> Factory Pattern <========")
-	breakfast := meal.NewMealHouseSpecial(meal.Breakfast)
-	lunch := meal.NewMealHouseSpecial(meal.Lunch)
-	dinner := meal.NewMealHouseSpecial(meal.Dinner)
+	breakfast := meals.NewMealHouseSpecial(meals.Breakfast)
+	lunch := meals.NewMealHouseSpecial(meals.Lunch)
+	dinner := meals.NewMealHouseSpecial(meals.Dinner)
 
-	for _, houseSpecial := range []*meal.Meal{breakfast, lunch, dinner} {
+	for _, houseSpecial := range []*meals.Meal{breakfast, lunch, dinner} {
 		fmt.Println("Default Meal:\n", houseSpecial.String())
 	}
 }
