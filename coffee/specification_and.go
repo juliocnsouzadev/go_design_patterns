@@ -4,7 +4,7 @@ type AndSpecification struct {
 	Specifications []Specification
 }
 
-func (andSpecification AndSpecification) IsSatisfied(coffee *Coffee) bool {
+func (andSpecification AndSpecification) IsSatisfied(coffee *coffee) bool {
 	for _, specification := range andSpecification.Specifications {
 		if !specification.IsSatisfied(coffee) {
 			return false

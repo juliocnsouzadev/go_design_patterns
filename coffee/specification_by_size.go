@@ -4,7 +4,7 @@ type SizeSpecification struct {
 	Size Size
 }
 
-func (sizeSpecification SizeSpecification) IsSatisfied(coffee *Coffee) bool {
+func (sizeSpecification SizeSpecification) IsSatisfied(coffee *coffee) bool {
 	return coffee.Size == sizeSpecification.Size
 }
 
