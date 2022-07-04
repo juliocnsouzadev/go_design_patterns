@@ -25,7 +25,7 @@ func NewMealHouseSpecial(special HouseSpecial) *Meal {
 			WithDescription("4 delicious slices of toasts").
 			WithDrink().
 			Named("Orange Juice").
-			WithSize(Large).
+			WithSize(Medium).
 			Build()
 	case Lunch:
 		return NewMealBuilder().
@@ -38,7 +38,7 @@ func NewMealHouseSpecial(special HouseSpecial) *Meal {
 			WithDescription("4 delicious slices of garlic bread covered in cheese").
 			WithDrink().
 			Named("Premium Weiss Beer").
-			WithSize(Large).
+			WithSize(Medium).
 			Build()
 	case Dinner:
 		return NewMealBuilder().
@@ -51,9 +51,15 @@ func NewMealHouseSpecial(special HouseSpecial) *Meal {
 			WithDescription("Medium portion of rice with garlic").
 			WithDrink().
 			Named("Premium Larger Beer").
-			WithSize(Large).
+			WithSize(Medium).
 			Build()
 	default:
 		panic("Unknown House special")
 	}
+}
+
+func NewMealGoLarge(proto *Meal) *Meal {
+	meal := proto.deepCopy()
+	meal.Drink.Size = Large
+	return meal
 }

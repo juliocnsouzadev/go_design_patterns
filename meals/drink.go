@@ -1,6 +1,8 @@
 package meals
 
-import "strings"
+import (
+	"strings"
+)
 
 type Size int
 
@@ -11,14 +13,14 @@ const (
 )
 
 type Drink struct {
-	name string
-	size Size
+	Name string
+	Size Size
 }
 
 func (d *Drink) String() string {
 	var sb strings.Builder
-	sb.WriteString(d.name)
-	switch d.size {
+	sb.WriteString(d.Name)
+	switch d.Size {
 	case Small:
 		sb.WriteString(" (small)")
 	case Medium:
@@ -34,11 +36,11 @@ type DrinkBuilder struct {
 }
 
 func (b *DrinkBuilder) Named(name string) *DrinkBuilder {
-	b.meal.drink.name = name
+	b.meal.Drink.Name = name
 	return b
 }
 
 func (b *DrinkBuilder) WithSize(size Size) *DrinkBuilder {
-	b.meal.drink.size = size
+	b.meal.Drink.Size = size
 	return b
 }
