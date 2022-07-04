@@ -83,6 +83,8 @@ func main() {
 	dinner := meals.NewMealHouseSpecial(meals.Dinner)
 
 	for _, houseSpecial := range []*meals.Meal{breakfast, lunch, dinner} {
-		fmt.Println("Default Meal:\n", houseSpecial.String())
+		fmt.Println("House Special Meal:\n", houseSpecial.String())
+		goLarge := meals.NewMealGoLarge(houseSpecial)
+		fmt.Println("Go Large!:\n", goLarge.String())
 	}
 }

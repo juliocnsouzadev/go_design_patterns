@@ -1,17 +1,19 @@
 package meals
 
-import "strings"
+import (
+	"strings"
+)
 
 type Side struct {
-	name        string
-	description string
+	Name        string
+	Description string
 }
 
 func (s *Side) String() string {
 	var sb strings.Builder
-	sb.WriteString(s.name)
+	sb.WriteString(s.Name)
 	sb.WriteString(" (")
-	sb.WriteString(s.description)
+	sb.WriteString(s.Description)
 	sb.WriteString(")")
 	return sb.String()
 }
@@ -21,11 +23,11 @@ type SideBuilder struct {
 }
 
 func (b *SideBuilder) Named(name string) *SideBuilder {
-	b.meal.side.name = name
+	b.meal.Side.Name = name
 	return b
 }
 
 func (b *SideBuilder) WithDescription(description string) *SideBuilder {
-	b.meal.side.description = description
+	b.meal.Side.Description = description
 	return b
 }

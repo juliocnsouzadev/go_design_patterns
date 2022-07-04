@@ -1,24 +1,34 @@
 package meals
 
-import "strings"
+import (
+	"encoding/json"
+	"strings"
+)
 
 type Meal struct {
-	name     string
-	mainDish *MainDish
-	side     *Side
-	drink    *Drink
+	Name     string
+	MainDish *MainDish
+	Side     *Side
+	Drink    *Drink
+}
+
+func (m *Meal) deepCopy() *Meal {
+	byt, _ := json.Marshal(m)
+	meal := Meal{}
+	json.Unmarshal(byt, &meal)
+	return &meal
 }
 
 func (m *Meal) String() string {
 	var sb strings.Builder
-	sb.WriteString(m.name)
+	sb.WriteString(m.Name)
 	sb.WriteString(" is composed of:")
 	sb.WriteString("\n- main dish:\n")
-	sb.WriteString(m.mainDish.String())
-	sb.WriteString("\n- side:\n")
-	sb.WriteString(m.side.String())
-	sb.WriteString("\n- drink:\n")
-	sb.WriteString(m.drink.String())
+	sb.WriteString(m.MainDish.String())
+	sb.WriteString("\n- Side:\n")
+	sb.WriteString(m.Side.String())
+	sb.WriteString("\n- Drink:\n")
+	sb.WriteString(m.Drink.String())
 	return sb.String()
 }
 
@@ -36,7 +46,7 @@ func NewMealBuilder() *Builder {
 }
 
 func (b *Builder) Named(name string) *Builder {
-	b.meal.name = name
+	b.meal.Name = name
 	return b
 }
 
