@@ -1,0 +1,12 @@
+salary
+1000
+in
+tax
+120
+out
+bonus
+500
+in
+insurance
+200
+out

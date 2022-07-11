@@ -4,34 +4,34 @@ import (
 	"fmt"
 )
 
-func SmsDecorator(transaction TransctionFunc) TransctionFunc {
-	return func(desc string, value float64, in bool) float64 {
-		fn := func(desc string, value float64, in bool) float64 {
+func SmsDecorator(transaction TransactionFunc) TransactionFunc {
+	return func(trans Transaction) float64 {
+		fn := func(trans Transaction) float64 {
 			tType := "Out"
-			if in {
+			if trans.In {
 				tType = "In"
 			}
 			defer func() {
-				fmt.Printf("SMS Sent\tTransaction [value: %v, type: %s] - %s\n", value, tType, desc)
+				fmt.Printf("SMS Sent\tTransaction [Value: %v, type: %s] - %s\n", trans.Value, tType, trans.Desc)
 			}()
-			return transaction(desc, value, in)
+			return transaction(trans)
 		}
-		return fn(desc, value, in)
+		return fn(trans)
 	}
 }
 
-func EmailDecorator(transaction TransctionFunc) TransctionFunc {
-	return func(desc string, value float64, in bool) float64 {
-		fn := func(desc string, value float64, in bool) float64 {
+func EmailDecorator(transaction TransactionFunc) TransactionFunc {
+	return func(trans Transaction) float64 {
+		fn := func(trans Transaction) float64 {
 			tType := "Out"
-			if in {
+			if trans.In {
 				tType = "In"
 			}
 			defer func() {
-				fmt.Printf("Email Sent\tTransaction [value: %v, type: %s] - %s\n", value, tType, desc)
+				fmt.Printf("Email Sent\tTransaction [Value: %v, type: %s] - %s\n", trans.Value, tType, trans.Desc)
 			}()
-			return transaction(desc, value, in)
+			return transaction(trans)
 		}
-		return fn(desc, value, in)
+		return fn(trans)
 	}
 }
