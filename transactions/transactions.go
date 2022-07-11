@@ -1,10 +1,16 @@
 package transactions
 
-type TransctionFunc func(string, float64, bool ) float64
+type Transaction struct {
+	Desc  string
+	Value float64
+	In    bool
+}
 
-func BankTransction (desc string, value float64, in bool ) float64{
-	if in {
-		return value
-	}	
-	return value * -1
+type TransactionFunc func(transaction Transaction) float64
+
+func BankTransaction(transaction Transaction) float64 {
+	if transaction.In {
+		return transaction.Value
+	}
+	return transaction.Value * -1
 }

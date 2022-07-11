@@ -11,11 +11,11 @@ func main() {
 	fmt.Println("** Design Patterns in Go **")
 
 	fmt.Println("\n========> Decorator Pattern <========")
-	transaction := transactions.BankTransction
+	transaction := transactions.BankTransaction
 	transaction = transactions.SmsDecorator(transaction)
 	transaction = transactions.EmailDecorator(transaction)
-	transaction("salary", 1000, true)
-	transaction("rent", 500, false)
+	transaction(transactions.Transaction{Desc: "salary", Value: 1000, In: true})
+	transaction(transactions.Transaction{Desc: "rent", Value: 500})
 
 	fmt.Println("\n========> Specification Pattern (Open and Closed Principle) <========")
 	cappuccinoSm := coffees.NewCoffee(coffees.Cappuccino, coffees.Small)
@@ -87,4 +87,11 @@ func main() {
 		goLarge := meals.NewMealGoLarge(houseSpecial)
 		fmt.Println("Go Large!:\n", goLarge.String())
 	}
+
+	fmt.Println("\n========> Singleton Pattern <========")
+
+	db := transactions.GetSingletonDatabase()
+	incomes := db.GetIncomesSum()
+	expenses := db.GetExpensesSum()
+	fmt.Println("Incomes:", incomes, "Expenses:", expenses, "Balance:", incomes+expenses)
 }
