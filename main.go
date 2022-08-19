@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"go_design_patterns/coffees"
 	"go_design_patterns/meals"
+	"go_design_patterns/neurons"
 	"go_design_patterns/transactions"
 )
 
@@ -94,4 +95,16 @@ func main() {
 	incomes := db.GetIncomesSum()
 	expenses := db.GetExpensesSum()
 	fmt.Println("Incomes:", incomes, "Expenses:", expenses, "Balance:", incomes+expenses)
+
+	fmt.Println("\n========> Composite Pattern <========")
+	neuron1, neuron2 := neurons.NewNeuron(), neurons.NewNeuron()
+	layer1, layer2 := neurons.NewNeuronLayer(3), neurons.NewNeuronLayer(4)
+
+	neurons.Connect(neuron1, neuron2)
+	neurons.Connect(neuron1, layer1)
+	neurons.Connect(layer2, neuron1)
+	neurons.Connect(layer1, layer2)
+
+	neurons.ShowConnections(neuron1, neuron2, layer1, layer2)
+
 }
