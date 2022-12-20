@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"go_design_patterns/coffees"
+	"go_design_patterns/cs"
 	"go_design_patterns/meals"
 	"go_design_patterns/neurons"
 	"go_design_patterns/transactions"
@@ -124,5 +125,8 @@ func main() {
 	if err != nil {
 		log.Fatalf("Error: %s\n", err.Error())
 	}
+
+	fmt.Println("\n========> Flyweight Pattern <========")
+	cs.CounterStrike(10)
 
 }
