@@ -1,25 +1,21 @@
 package meals
 
 import (
-	"encoding/json"
 	"strings"
 )
 
-type Meal struct {
+type MealImpl struct {
 	Name     string
 	MainDish *MainDish
 	Side     *Side
 	Drink    *Drink
 }
 
-func (m *Meal) deepCopy() *Meal {
-	byt, _ := json.Marshal(m)
-	meal := Meal{}
-	json.Unmarshal(byt, &meal)
-	return &meal
+func (m *MealImpl) GoLarge() {
+	m.Drink.Size = Large
 }
 
-func (m *Meal) String() string {
+func (m *MealImpl) String() string {
 	var sb strings.Builder
 	sb.WriteString(m.Name)
 	sb.WriteString(" is composed of:")
@@ -33,11 +29,11 @@ func (m *Meal) String() string {
 }
 
 type Builder struct {
-	meal *Meal
+	meal *MealImpl
 }
 
 func NewMealBuilder() *Builder {
-	return &Builder{&Meal{
+	return &Builder{&MealImpl{
 		"",
 		&MainDish{},
 		&Side{},
@@ -62,6 +58,6 @@ func (b *Builder) WithDrink() *DrinkBuilder {
 	return &DrinkBuilder{b}
 }
 
-func (b *Builder) Build() *Meal {
+func (b *Builder) Build() *MealImpl {
 	return b.meal
 }
