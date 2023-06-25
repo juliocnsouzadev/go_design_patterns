@@ -5,6 +5,7 @@ import (
 	"go_design_patterns/coffees"
 	"go_design_patterns/cs"
 	"go_design_patterns/meals"
+	mealsapi "go_design_patterns/meals_api"
 	"go_design_patterns/neurons"
 	"go_design_patterns/transactions"
 	"go_design_patterns/wallet"
@@ -82,14 +83,14 @@ func main() {
 	fmt.Println("Built Meal:\n", someMeal.String())
 
 	fmt.Println("\n========> Factory Pattern <========")
-	breakfast := meals.NewMealHouseSpecial(meals.Breakfast)
-	lunch := meals.NewMealHouseSpecial(meals.Lunch)
-	dinner := meals.NewMealHouseSpecial(meals.Dinner)
+	breakfast := mealsapi.NewMealHouseSpecial("Breakfast")
+	lunch := mealsapi.NewMealHouseSpecial("Lunch")
+	dinner := mealsapi.NewMealHouseSpecial("Dinner")
 
-	for _, houseSpecial := range []*meals.Meal{breakfast, lunch, dinner} {
+	for _, houseSpecial := range []mealsapi.Meal{breakfast, lunch, dinner} {
 		fmt.Println("House Special Meal:\n", houseSpecial.String())
-		goLarge := meals.NewMealGoLarge(houseSpecial)
-		fmt.Println("Go Large!:\n", goLarge.String())
+		houseSpecial.GoLarge()
+		fmt.Println("Go Large!:\n", houseSpecial.String())
 	}
 
 	fmt.Println("\n========> Singleton Pattern <========")
