@@ -7,6 +7,7 @@ import (
 	"go_design_patterns/meals"
 	mealsapi "go_design_patterns/meals_api"
 	"go_design_patterns/neurons"
+	"go_design_patterns/sales"
 	"go_design_patterns/transactions"
 	"go_design_patterns/wallet"
 	"log"
@@ -129,5 +130,8 @@ func main() {
 
 	fmt.Println("\n========> Flyweight Pattern <========")
 	cs.CounterStrike(10)
+
+	fmt.Println("\n========> State Machine <========")
+	sales.ExecuteFMS()
 
 }
